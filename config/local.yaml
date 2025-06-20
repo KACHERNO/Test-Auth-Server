@@ -1,0 +1,22 @@
+# config/local.yaml
+http_server:
+  sslCert: "../config/ssl.cert"
+  sslKey:  "../config/ssl.key"
+  address: "0.0.0.0:8080"
+  timeout: 4s
+  idle_timeout: 30s
+user1:
+  email: "user1@mail.ru"
+  name: "User 1"
+  password: "user1"
+  payload: "{\"https://hasura.io/jwt/claims\":{\"x-hasura-allowed-roles\":[\"DBA\",\"Users\"],\"x-hasura-default-role\":\"Users\",\"x-hasura-user-id\":\"1\"}}"
+user2:
+  email: "user2@mail.ru"
+  name: "User 2"
+  password: "user2"
+  payload: "{\"https://hasura.io/jwt/claims\":{\"x-hasura-allowed-roles\":[\"Admins\",\"Users\"],\"x-hasura-default-role\":\"Users\",\"x-hasura-user-id\":\"2\"}}"
+user3:
+  email: "user3@mail.ru"
+  name: "User 3"
+  password: "user3"
+  payload: "{\"https://hasura.io/jwt/claims\":{\"x-hasura-allowed-roles\":[\"Managers\",\"Users\"],\"x-hasura-default-role\":\"Users\",\"x-hasura-user-id\":\"3\"}}"
