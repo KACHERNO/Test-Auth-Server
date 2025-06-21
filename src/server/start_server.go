@@ -5,6 +5,7 @@ import (
 	"os"
 	"simpleauth_server/src/database"
 	"simpleauth_server/src/database/handlers"
+	"strings"
 
 	jwtware "github.com/gofiber/contrib/jwt"
 	"github.com/gofiber/fiber/v2"
@@ -51,7 +52,12 @@ func Start(cfg *Config) {
 		authorizedGroup.Get("/dbinfo", handlers.GetDatabaseInfo)
 	}
 
-	log.Fatal(app.Listen(cfg.Address))
+	// Запуск HTTP-сервера
+	if strings.ToUpper(cfg.HTTPServer.HTTPSmode) == "ON" {
+		log.Fatal(app.ListenTLS(cfg.Address, cfg.SSLcert, cfg.SSLkey))
+	} else {
+		log.Fatal(app.Listen(cfg.Address))
+	}
 }
 
 func Connect_Database() {
@@ -62,7 +68,6 @@ func Connect_Database() {
 		return
 	}
 	//database.Connect("postgres://postgres:password@host/database")
-	//database.Connect("postgres://postgres:1qaz!QAZ1qaz@localhost/postgres")
 	var dberr error = database.Connect(db_connection)
 	if dberr != nil {
 		log.Fatalf("Database connection error: %v", dberr)

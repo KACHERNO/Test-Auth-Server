@@ -16,6 +16,7 @@ type Config struct {
 }
 
 type HTTPServer struct {
+	HTTPSmode   string        `yaml:"httpsMode" env-default:"off"`
 	SSLcert     string        `yaml:"sslCert" env-default:""`
 	SSLkey      string        `yaml:"sslKey"  env-default:""`
 	Address     string        `yaml:"address" env-default:"0.0.0.0:8080"`

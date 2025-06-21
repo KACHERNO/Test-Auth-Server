@@ -70,8 +70,7 @@ var (
 	errBadCredentials = errors.New("email or password is incorrect")
 )
 
-// Секретный ключ для подписи JWT-токена
-// Необходимо хранить в безопасном месте
+// Секретный ключ для JWT-токена необходимо хранить в безопасном месте
 var jwtSecretKey []byte
 
 // var jwtSecretKey = []byte("very-secret-key")
@@ -97,7 +96,7 @@ func (h *AuthHandler) Register(c *fiber.Ctx) error {
 		password: regReq.Password,
 	}
 
-	log.Printf("Registered user %s (%s).", h.storage.users[regReq.Email].Name, h.storage.users[regReq.Email].Email)
+	// log.Printf("Registered user %s (%s).", h.storage.users[regReq.Email].Name, h.storage.users[regReq.Email].Email)
 	return c.SendStatus(fiber.StatusCreated)
 }
 
